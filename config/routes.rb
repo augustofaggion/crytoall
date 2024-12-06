@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  get "dashboard/index"
   devise_for :users
+
+  get 'dashboard', to: 'dashboard#index', as: :dashboard
   root to: "pages#index"
   get "pages/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
