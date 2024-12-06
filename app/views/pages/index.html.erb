@@ -1,0 +1,26 @@
+<%# Main page %>
+<div>
+  <nav>
+    <a href="">logo</a>
+    <a href="">home</a>
+    <a href="">about</a>
+    <%= link_to "Sign up", new_user_registration_path %>
+    <%= link_to 'Log in', user_session_path %>
+    <%= link_to 'Try now', new_user_registration_path %>
+  </nav>
+  <main class="bg-gray-800 text-white py-12 px-6 text-center">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-4">Track Your Crypto Portfolio Like a Pro</h1>
+    <p class="text-lg mb-6">
+      Take control of your crypto investments with <strong>CryptoAll</strong>.
+      Easily save your trades, monitor performance, and stay ahead of the market.
+    </p>
+    <div class="flex justify-center gap-4">
+      <%# Sign-up Button %>
+      <%= link_to "Get Started Now", new_user_registration_path, class: "bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg text-lg" %>
+      <%# Learn More Button %>
+      <%= link_to "Learn More",new_user_registration_path , class: "bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg text-lg" %>
+    </div>
+  </div>
+</div>
+</div>
