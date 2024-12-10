@@ -1,0 +1,27 @@
+<h1 class="text-2xl font-bold">All Coins</h1>
+
+<form action="">
+  <input type="text" name="crypto_name" placeholder="Crypto name" class="">
+  <input type="text" name="crypto_code" placeholder="Crypto code" class="">
+  <input type="text" name="crypto_amount_bought" placeholder="Crypto Amount" class="">
+  <input type="number" name="euro" placeholder="Invested" class="">
+  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Add a crypto</button>
+</form>
+<table class="table-auto border-collapse border border-gray-300 w-full mt-4">
+  <thead>
+    <tr>
+      <th class="border border-gray-300 px-4 py-2">Name</th>
+      <th class="border border-gray-300 px-4 py-2">Symbol</th>
+      <th class="border border-gray-300 px-4 py-2">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cryptos.each do |crypto| %>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2"><%= crypto[:name] %></td>
+        <td class="border border-gray-300 px-4 py-2"><%= crypto[:symbol] %></td>
+        <td class="border border-gray-300 px-4 py-2"><%= number_to_currency(crypto[:price], unit: '$') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

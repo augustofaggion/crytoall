@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
-  get "dashboard/index"
   devise_for :users
 
-  get 'dashboard', to: 'dashboard#index', as: :dashboard
+  # Dashboard user
+  get "dashboard", to: "dashboard#index", as: :dashboard
+
+  # Cryptos
+  get "cryptos", to: "cryptos#index", as: :cryptos
+  # Creater crypto
+  post "cryptos", to: "cryptos#create"
+
   root to: "pages#index"
   get "pages/index"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Define your application sroutes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
