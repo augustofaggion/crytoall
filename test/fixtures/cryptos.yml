@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  crypto_name: MyString
+  crypto_code: MyString
+  crypto_amount: 9.99
+  euro_invested: 9.99
+  user: one
+
+two:
+  crypto_name: MyString
+  crypto_code: MyString
+  crypto_amount: 9.99
+  euro_invested: 9.99
+  user: two

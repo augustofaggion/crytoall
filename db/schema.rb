@@ -10,9 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_06_114148) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_13_082753) do
+  create_schema "auth"
+  create_schema "extensions"
+  create_schema "graphql"
+  create_schema "graphql_public"
+  create_schema "pgbouncer"
+  create_schema "pgsodium"
+  create_schema "pgsodium_masks"
+  create_schema "realtime"
+  create_schema "storage"
+  create_schema "vault"
+
   # These are extensions that must be enabled in order to support this database
+  enable_extension "extensions.pg_stat_statements"
+  enable_extension "extensions.pgcrypto"
+  enable_extension "extensions.pgjwt"
+  enable_extension "extensions.uuid-ossp"
+  enable_extension "graphql.pg_graphql"
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "pgsodium.pgsodium"
+  enable_extension "vault.supabase_vault"
+
+  create_table "crypto", id: :bigint, default: nil, comment: "crypto storage", force: :cascade do |t|
+    t.string "crypto_name"
+    t.string "crypto_code"
+    t.float "crypto_amount"
+    t.float "euro_invested"
+    t.timestamptz "created_at", default: -> { "now()" }, null: false
+    t.bigint "user_id"
+  end
+
+  create_table "cryptos", force: :cascade do |t|
+    t.string "crypto_name"
+    t.string "crypto_code"
+    t.decimal "crypto_amount"
+    t.decimal "euro_invested"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cryptos_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +65,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_06_114148) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "crypto", "users", column: "id", name: "crypto_id_fkey"
+  add_foreign_key "cryptos", "users"
 end

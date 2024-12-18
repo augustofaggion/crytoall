@@ -50,7 +50,7 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  gem 'dotenv-rails', groups: [:development, :test]
+  gem "dotenv-rails", groups: [ :development, :test ]
 end
 
 group :development do
@@ -65,6 +65,8 @@ group :test do
 end
 
 gem "tailwindcss-rails", "~> 3.0"
-gem 'devise', '~> 4.9.2'
+gem "devise", "~> 4.9.2"
 
 gem "cssbundling-rails", "~> 1.4"
+
+gem "supabase"
