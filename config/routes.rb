@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   get "dashboard", to: "dashboard#index", as: :dashboard
 
   # Cryptos
-  get "cryptos", to: "cryptos#index", as: :cryptos
+  # get "cryptos", to: "cryptos#index", as: :cryptos
   # Creater crypto
-  post "cryptos", to: "cryptos#create"
-
+  # post "cryptos", to: "cryptos#create"
+  resources :cryptos, only: [:index, :create, :edit, :update]
   root to: "pages#index"
   get "pages/index"
   # Define your application sroutes per the DSL in https://guides.rubyonrails.org/routing.html
