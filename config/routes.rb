@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # get "cryptos", to: "cryptos#index", as: :cryptos
   # Creater crypto
   # post "cryptos", to: "cryptos#create"
-  resources :cryptos, only: [:index, :create, :edit, :update]
+  resources :cryptos, only: [ :index, :create, :edit, :update, :destroy ]
   root to: "pages#index"
   get "pages/index"
   # Define your application sroutes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -71,7 +71,13 @@
             <td class="border border-gray-300 px-4 py-2"><%= crypto.crypto_name %></td>
             <td class="border border-gray-300 px-4 py-2"><%= crypto.crypto_code %></td>
             <td class="border border-gray-300 px-4 py-2"><%= number_to_currency(crypto.euro_invested, unit: '€') %></td>
-            <td class="border border-gray-300 px-4 py-2"><%= link_to 'Edit', edit_crypto_path(crypto) %></td>
+           <td class="border border-gray-300 px-4 py-2">
+            <%= link_to 'Edit', edit_crypto_path(crypto), class: 'text-blue-500 hover:underline' %>
+            |
+            <%= form_with model: crypto, method: :delete, data: { confirm: 'Are you sure?' }, class: 'inline' do %>
+  <button type="submit" class="text-red-500 hover:underline">Delete</button>
+<% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

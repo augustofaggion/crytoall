@@ -1,6 +1,6 @@
 class CryptosController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_crypto, only: [:edit, :update]
+  before_action :set_crypto, only: [ :edit, :update, :destroy ]
   def index
     @cryptos = current_user.cryptos
   end
@@ -17,14 +17,21 @@ class CryptosController < ApplicationController
   end
 
   def edit
-    @crypto
   end
 
   def update
     if @crypto.update(crypto_params)
-      redirect_to cryptos_path notice: "Crypto updated successfully"
+      redirect_to cryptos_path, notice: "Crypto updated successfully"
     else
       render :edit, alert: "Failed to update crypto: #{crypto.errors.full_messages.join(', ')}"
+    end
+  end
+
+  def destroy
+    if @crypto.destroy
+      redirect_to cryptos_path, notice: "Crypto deleted successfully"
+    else
+      redirect_to cryptos_path, alert: "Failed to delete crypto"
     end
   end
 
@@ -32,6 +39,8 @@ class CryptosController < ApplicationController
 
   def set_crypto
     @crypto = current_user.cryptos.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to cryptos_path, alert: "Crypto not found"
   end
 
   def crypto_params
