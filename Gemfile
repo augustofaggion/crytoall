@@ -56,6 +56,8 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'guard'
+  gem 'guard-livereload', require: false
 end
 
 group :test do
@@ -64,9 +66,14 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "tailwindcss-rails", "~> 3.1"
+
+
 gem "devise", "~> 4.9.2"
 
 gem "cssbundling-rails", "~> 1.4"
 
 gem "supabase"
+
+gem 'bootstrap', '~> 5.3.3'
+
+gem 'jquery-rails'
