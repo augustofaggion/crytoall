@@ -1,25 +1,25 @@
-<h1 class="text-2xl font-bold">Edit Crypto</h1>
+<h1 class="">Edit Crypto</h1>
 
 <%= form_with model: @crypto, url: crypto_path(@crypto), method: :patch, local: true do |form| %>
   <div>
     <%= form.label :crypto_name, "Crypto Name" %>
-    <%= form.text_field :crypto_name, class: "border rounded w-full p-2", required: true %>
+    <%= form.text_field :crypto_name, class: "", required: true %>
   </div>
   <div>
     <%= form.label :crypto_code, "Crypto Code" %>
-    <%= form.text_field :crypto_code, class: "border rounded w-full p-2", required: true %>
+    <%= form.text_field :crypto_code, class: "", required: true %>
   </div>
   <div>
     <%= form.label :crypto_amount, "Crypto Amount" %>
-    <%= form.number_field :crypto_amount, class: "border rounded w-full p-2", required: true %>
+    <%= form.number_field :crypto_amount, class: "", required: true %>
   </div>
   <div>
     <%= form.label :euro_invested, "Euro Invested" %>
-    <%= form.number_field :euro_invested, class: "border rounded w-full p-2", required: true %>
+    <%= form.number_field :euro_invested, class: "", required: true %>
   </div>
-  <div class="mt-4">
-    <%= form.submit "Update Crypto", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  <div class="">
+    <%= form.submit "Update Crypto", class: "" %>
   </div>
 <% end %>
 
-<%= link_to "Back to All Cryptos", cryptos_path, class: "text-blue-500 underline mt-4 block" %>
+<%= link_to "Back to All Cryptos", cryptos_path, class: "" %>

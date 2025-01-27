@@ -2,4 +2,9 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import Rails from "@rails/ujs";
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+import "bootstrap"
+import "../stylesheets/application"
 Rails.start();

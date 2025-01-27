@@ -1,6 +1,7 @@
 class CryptosController < ApplicationController
   before_action :authenticate_user!
   before_action :set_crypto, only: [ :edit, :update, :destroy ]
+
   def index
     @cryptos = current_user.cryptos
   end
@@ -46,4 +47,6 @@ class CryptosController < ApplicationController
   def crypto_params
     params.require(:crypto).permit(:crypto_name, :crypto_code, :crypto_amount, :euro_invested)
   end
+
+
 end
