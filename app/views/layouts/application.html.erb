@@ -21,14 +21,32 @@
     <link rel="stylesheet" href="/assets/application.scss">
 
     <%= stylesheet_link_tag "application", media: "all" %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_importmap_tags %>
   </head>
 
   <body class="bg-light">
-    <main class="">
+    <% if user_signed_in? %>
+      <%= render "shared/logged_navbar" %>
+    <% else %>
+      <%= render "shared/guest_navbar" %>
+    <% end %>
       <%= yield %>
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+     <% if notice %>
+    <div class="alert alert-success fixed-bottom alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
+  <!-- Show the alert only if an alert exists -->
+  <% if alert %>
+    <div class="alert alert-danger fixed-bottom alert-dismissible fade show" role="alert">
+      <%= alert %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
     </main>
   </body>
 </html>
