@@ -1,100 +1,76 @@
-<div class="">
-  <h1 class="">All Yours invested Coins</h1>
+<div class="container mt-5">
+  <h1 class="text-primary fw-bold text-center">All Your Invested Coins</h1>
 
-<%= link_to 'Back to Dashboard', dashboard_path %>
-<form action="/cryptos" method="post" class="">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
-  <!-- First row: Crypto Name and Crypto Code -->
-  <div class="">
-    <div class="">
-      <label for="crypto_name" class="">Crypto Name:</label>
-      <input
-        type="text"
-        name="crypto[crypto_name]"
-        id="crypto_name"
-        placeholder="Enter crypto name"
-        class=""
-      >
-    </div>
-
-    <div class="">
-      <label for="crypto_code" class="">Crypto Code:</label>
-      <input
-        type="text"
-        name="crypto[crypto_code]"
-        id="crypto_code"
-        placeholder="Enter crypto code"
-        class=""
-      >
-    </div>
+  <div class="text-center mb-4">
+    <%= link_to 'Back to Dashboard', dashboard_path, class: "btn btn-secondary" %>
   </div>
 
-  <!-- Second row: Amount Bought and Euro Invested -->
-  <div class="">
-    <div class="">
-      <label for="crypto_amount" class="">Amount Bought:</label>
-      <input
-        type="text"
-        name="crypto[crypto_amount]"
-        id="crypto_amount"
-        placeholder="Enter amount bought"
-        class=""
-      >
+  <form action="/cryptos" method="post" class="border p-4 rounded shadow bg-light">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="crypto_name" class="form-label">Crypto Name:</label>
+        <input type="text" name="crypto[crypto_name]" id="crypto_name" placeholder="Enter crypto name" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="crypto_code" class="form-label">Crypto Code:</label>
+        <input type="text" name="crypto[crypto_code]" id="crypto_code" placeholder="Enter crypto code" class="form-control">
+      </div>
     </div>
 
-    <div class="">
-      <label for="euro_invested" class="">Euro Invested:</label>
-      <input
-        type="number"
-        name="crypto[euro_invested]"
-        id="euro_invested"
-        placeholder="Enter euros invested"
-        class=""
-      >
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="crypto_amount" class="form-label">Amount Bought:</label>
+        <input type="text" name="crypto[crypto_amount]" id="crypto_amount" placeholder="Enter amount bought" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="euro_invested" class="form-label">Euro Invested:</label>
+        <input type="number" name="crypto[euro_invested]" id="euro_invested" placeholder="Enter euros invested" class="form-control">
+      </div>
     </div>
-  </div>
 
-  <button
-    type="submit"
-    class=""
-  >
-    Add a crypto
-  </button>
-</form>
-
-
-
+    <div class="text-center">
+      <button type="submit" class="btn btn-success btn-lg">Add a Crypto</button>
+    </div>
+  </form>
 
   <% if @cryptos.any? %>
-    <table class="">
-      <thead>
-        <tr class="">
-          <th class="">Name</th>
-          <th class="">Code</th>
-          <th>Amount</th>
-          <th class="">Invested (€)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @cryptos.each do |crypto| %>
-          <tr class="">
-            <td class=""><%= crypto.crypto_name %></td>
-            <td class=""><%= crypto.crypto_code %></td>
-            <td><%= crypto.crypto_amount%></td>
-            <td class=""><%= number_to_currency(crypto.euro_invested, unit: '€') %></td>
-           <td class="">
-            <%= link_to 'Edit', edit_crypto_path(crypto), class: '' %>
-            |
-            <%= form_with model: crypto, method: :delete, data: { confirm: 'Are you sure?' }, class: '' do %>
-  <button type="submit" class="">Delete</button>
-<% end %>
-            </td>
+    <div class="table-responsive mt-5">
+      <table class="table table-hover table-bordered shadow-sm">
+        <thead class="table-primary">
+          <tr class="text-center">
+            <th>Name</th>
+            <th>Code</th>
+            <th>Amount</th>
+            <th>Invested (€)</th>
+            <th>Actions</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @cryptos.each do |crypto| %>
+            <tr class="text-center">
+              <td><%= crypto.crypto_name %></td>
+              <td><%= crypto.crypto_code %></td>
+              <td><%= crypto.crypto_amount %></td>
+              <td><%= number_to_currency(crypto.euro_invested, unit: '€') %></td>
+              <td>
+                <%= link_to edit_crypto_path(crypto), class: "btn btn-warning btn-sm me-2" do %>
+                  <i class="bi bi-pencil-square"></i> Edit
+                <% end %>
+
+                <%= form_with model: crypto, method: :delete, data: { confirm: 'Are you sure?' }, class: "d-inline" do %>
+                  <button type="submit" class="btn btn-danger btn-sm">
+                    <i class="bi bi-trash"></i> Delete
+                  </button>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   <% else %>
-    <p class="">No cryptos found.</p>
+    <p class="text-muted text-center mt-4">No cryptos found.</p>
   <% end %>
 </div>
